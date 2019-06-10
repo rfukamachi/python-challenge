@@ -53,18 +53,12 @@ for index in CandidateVotes:
     CandidatePercent.append(VotePercentage)
 
 
+#Winner is...
+WinnerIndex = CandidatePercent.index(max(CandidatePercent))
+Winner = UniqueCandidates[WinnerIndex]
+
 #zip it all up:
 CandidatePolls = zip(UniqueCandidates, CandidatePercent, CandidateVotes)
-
-#reverse sort so the winner is at the top of the list:
-
-WinnerList = sorted(CandidatePolls)
-
-for index in WinnerList:
-    print(index)
-
-
-
 
 
 
@@ -74,16 +68,17 @@ output.append("Election Results")
 output.append("-" * 25)
 output.append(f"Total Votes: {ttl_votes}")
 output.append("-" * 25)
-
-# output.append(f"Total: ${net_amt}")
-# output.append(f"Average Change: ${avg_chg}")
-# output.append(f"Greatest Increase in Profits: {grtst_incr_mo} (${grtst_incr_amt})")
-# output.append(f"Greatest Decrease in Profits: {grtst_decr_mo} (${grtst_decr_amt})")
+#list of candidates in reverse order:
 
 
-# #print to terminal:
-# for i in output:
-#     print(i)
+output.append("-" * 25)
+output.append(f"Winner: {Winner}")
+output.append("-" * 25)
+
+
+#print to terminal:
+for i in output:
+    print(i)
 
 
 # #create txt file to output:
