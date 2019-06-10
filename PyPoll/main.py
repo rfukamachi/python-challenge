@@ -6,7 +6,7 @@ csv_path = os.path.join('Resources', 'election_data.csv')
 
 #Lists to store the csv data:
 VoterID = []
-County = []
+# County = []
 Candidate = []
 
 #Initialize variables:
@@ -23,7 +23,7 @@ with open(csv_path, newline = "", encoding = "UTF8") as csv_file:
 
     for row in csv_reader:
         VoterID.append(row[0])
-        County.append(row[1])
+        # County.append(row[1])
         Candidate.append(row[2])
         
 
@@ -57,36 +57,42 @@ for index in CandidateVotes:
 WinnerIndex = CandidatePercent.index(max(CandidatePercent))
 Winner = UniqueCandidates[WinnerIndex]
 
-#zip it all up:
-CandidatePolls = zip(UniqueCandidates, CandidatePercent, CandidateVotes)
 
 
-
-# #output:
+#output:
 output = []
 output.append("Election Results")
 output.append("-" * 25)
 output.append(f"Total Votes: {ttl_votes}")
 output.append("-" * 25)
-#list of candidates in reverse order:
+# list of candidates in reverse order:
+for index in range(len(CandidatePercent)):
+    TopCandidateIndex = CandidateVotes.index(max(CandidateVotes))
 
+    TopCandidate = UniqueCandidates[TopCandidateIndex]
+    TopCandidatePercent = CandidatePercent[TopCandidateIndex]
+    TopCandidateVotes = CandidateVotes[TopCandidateIndex]
 
+    output.append(f"{TopCandidate}: {TopCandidatePercent} ({TopCandidateVotes})")
+
+    UniqueCandidates.pop(TopCandidateIndex)
+    CandidatePercent.pop(TopCandidateIndex)
+    CandidateVotes.pop(TopCandidateIndex)
+    
 output.append("-" * 25)
 output.append(f"Winner: {Winner}")
 output.append("-" * 25)
 
 
-#print to terminal:
+# print to terminal:
 for i in output:
     print(i)
 
 
-# #create txt file to output:
-# output_path = os.path.join('PyBankAnalysis.txt')
-# with open(output_path, 'w') as txt_file: 
+#create txt file to output:
+output_path = os.path.join('PyPollAnalysis.txt')
+with open(output_path, 'w') as txt_file: 
     
-#     for i in output:
-#         txt_file.write(i + '\n')
+    for i in output:
+        txt_file.write(i + '\n')
 
-
-   
