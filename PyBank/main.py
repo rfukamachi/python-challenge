@@ -52,7 +52,7 @@ grtst_decr_mo = dates[changes.index(min(changes))]
 
 
 #not working: 
-avg_chg = "{:.2f}".format(float(ttl_chg/ttl_mo))
+avg_chg = "{:.2f}".format(float(ttl_chg/(ttl_mo-1)))
 
 #output:
 output = []
